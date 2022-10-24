@@ -9,11 +9,29 @@ def get_home(request):
 
 
 def get_product(request, product_id):
-    products = Product.objects.get(id=product_id)
-    return HTTPResponse(
-        f"""
-    <p>{product.id}</p>
-    <h1>{product.name}</h1>
-    <p>{product.price}</p>
-    """
-    )
+    product = Product.objects.get(id=product_id)
+    context = {
+        "product": {
+            "id": product.id,
+            "name": product.name,
+            "description": product.description,
+            "price": product.price,
+        }
+    }
+
+    return render(request, "product-detail.html", context)
+
+
+def get_products(request):
+    products = Product.objects.all()
+    _products = []
+    for product in products:
+        _products.append(
+            {
+                "id": product.id,
+                "name": product.name,
+                "price": product.price,
+            }
+        )
+        context = {"products": _products}
+    return render(request, "product-list.html", context)
