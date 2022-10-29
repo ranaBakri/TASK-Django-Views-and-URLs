@@ -33,5 +33,6 @@ def get_products(request):
                 "price": product.price,
             }
         )
-        context = {"products": _products}
+    context = {"products": _products}
+
     return render(request, "product-list.html", context)

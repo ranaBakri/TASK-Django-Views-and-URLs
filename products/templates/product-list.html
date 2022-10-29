@@ -8,12 +8,12 @@
 </head>
 <body>
     <h1>Products</h1>
-    {% for product in products %}
+        {% for product in products %}
     <div>
        <a href="{% url 'product_detail' product_id=product.id %}">
          <h3>{{product.name}}</h3></a>>
         <h4>{{product.price}}KD</h4>
     </div>
-
+        {% endfor %}
 </body>
 </html>
